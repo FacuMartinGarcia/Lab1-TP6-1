@@ -3,29 +3,28 @@ package Entidades;
 
 import java.util.Objects;
 
-
-
-
 public class Producto {
 
-    private String nombre;
+    private String descripcion;
     private double precio;
-    private String categoria;
+    private String rubro;
+    private int stock;
+    private int codigo;
 
-
-    public Producto(String categoria, String nombre, double precio) {
-        this.categoria = categoria;
-        this.nombre = nombre;
-        this.precio=precio;
-
+    public Producto(String descripcion, double precio, String rubro, int stock, int codigo) {
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.rubro = rubro;
+        this.stock = stock;
+        this.codigo = codigo;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public double getPrecio() {
@@ -36,24 +35,41 @@ public class Producto {
         this.precio = precio;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public String getRubro() {
+        return rubro;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setRubro(String rubro) {
+        this.rubro = rubro;
     }
-    
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
     @Override
     public String toString() {
-        return "Producto{" + "nombre=" + nombre + ", precio=" + precio + ", categoria=" + categoria + '}';
+        return "Producto{" + "descripcion=" + descripcion + ", precio=" + precio + ", rubro=" + rubro + ", stock=" + stock + ", codigo=" + codigo + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.nombre);
-        hash = 97 * hash + Objects.hashCode(this.categoria);
+        hash = 53 * hash + Objects.hashCode(this.descripcion);
+        hash = 53 * hash + Objects.hashCode(this.rubro);
+        hash = 53 * hash + this.codigo;
         return hash;
     }
 
@@ -69,15 +85,17 @@ public class Producto {
             return false;
         }
         final Producto other = (Producto) obj;
-        if (!Objects.equals(this.nombre, other.nombre)) {
+        if (this.codigo != other.codigo) {
             return false;
         }
-        return Objects.equals(this.categoria, other.categoria);
+        if (!Objects.equals(this.descripcion, other.descripcion)) {
+            return false;
+        }
+        return Objects.equals(this.rubro, other.rubro);
     }
 
-
-
     
     
-
+    
+    
 }
