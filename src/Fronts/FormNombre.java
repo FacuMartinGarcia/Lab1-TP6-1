@@ -4,17 +4,24 @@
  */
 package Fronts;
 
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+
 /**
  *
  * @author Rafa
  */
-public class FormNombre extends javax.swing.JInternalFrame {
 
+
+public class FormNombre extends javax.swing.JInternalFrame {
+    
+private DefaultTableModel modeloA= new DefaultTableModel();
     /**
      * Creates new form FormNombre
      */
     public FormNombre() {
         initComponents();
+        armarCabecera();
     }
 
     /**
@@ -29,9 +36,9 @@ public class FormNombre extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tbDescripcion = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jProductos = new javax.swing.JTable();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setText("Listado por Nombre");
@@ -39,7 +46,13 @@ public class FormNombre extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Descripcion");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tbDescripcionKeyReleased(evt);
+            }
+        });
+
+        jProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -50,7 +63,7 @@ public class FormNombre extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jProductos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -64,10 +77,12 @@ public class FormNombre extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(72, 72, 72)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))))
-                .addContainerGap(91, Short.MAX_VALUE))
+                            .addComponent(tbDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -77,10 +92,10 @@ public class FormNombre extends javax.swing.JInternalFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addComponent(tbDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addGap(45, 45, 45))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -97,13 +112,51 @@ public class FormNombre extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tbDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbDescripcionKeyReleased
+        
+        // TEXTO DE DESCRIPCION
+        
+        
+        
+    }//GEN-LAST:event_tbDescripcionKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTable jProductos;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField tbDescripcion;
     // End of variables declaration//GEN-END:variables
+
+private void armarCabecera(){
+
+        modeloA.addColumn("Codigo");
+        modeloA.addColumn("Descripcion");
+        modeloA.addColumn("Rubro");
+        modeloA.addColumn("Precio");
+        modeloA.addColumn("Stock");
+
+        jProductos.setModel(modeloA);
+
+        // Obtener el modelo de columnas de la tabla
+        TableColumnModel columnModel = jProductos.getColumnModel();
+
+        // Ancho de las columnas
+        columnModel.getColumn(0).setPreferredWidth(50);   // "Codigo"
+        columnModel.getColumn(1).setPreferredWidth(180);  // "Descripcion"
+        columnModel.getColumn(2).setPreferredWidth(100);  // "Categoria"
+        columnModel.getColumn(3).setPreferredWidth(50);   // "Precio"
+        columnModel.getColumn(4).setPreferredWidth(30);   // "Stock"
+
+
+
+    }
+
+
+
+
+
+
 }
