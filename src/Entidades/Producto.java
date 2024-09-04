@@ -5,19 +5,21 @@ import java.util.Objects;
 
 public class Producto {
 
-    private String descripcion;
-    private double precio;
-    private String rubro;
-    private int stock;
     private int codigo;
+    private String descripcion;
+    private String rubro;
+    private double precio;
+    private int stock;
 
-    public Producto(String descripcion, double precio, String rubro, int stock, int codigo) {
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.rubro = rubro;
-        this.stock = stock;
+    public Producto(int codigo, String descripcion, String rubro, double precio, int stock) {
         this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.rubro = rubro;
+        this.precio = precio;
+        this.stock = stock;
     }
+
+
 
     public String getDescripcion() {
         return descripcion;
@@ -59,10 +61,14 @@ public class Producto {
         this.codigo = codigo;
     }
 
+    
+    
+    
     @Override
     public String toString() {
-        return "Producto{" + "descripcion=" + descripcion + ", precio=" + precio + ", rubro=" + rubro + ", stock=" + stock + ", codigo=" + codigo + '}';
+        return "Producto{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", rubro=" + rubro + ", precio=" + precio + ", stock=" + stock + '}';
     }
+
 
     @Override
     public int hashCode() {
