@@ -44,6 +44,8 @@ private DefaultTableModel modeloA= new DefaultTableModel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jProductos = new javax.swing.JTable();
 
+        setClosable(true);
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel3.setText("Listado por Precios");
 
@@ -82,7 +84,7 @@ private DefaultTableModel modeloA= new DefaultTableModel();
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/vecteezy_magnifying-glass-png-graphic-clipart-design_19907414.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Lupa.png"))); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -125,7 +127,7 @@ private DefaultTableModel modeloA= new DefaultTableModel();
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(76, 76, 76)
                         .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
+                        .addGap(39, 39, 39)
                         .addComponent(jLabel4))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)

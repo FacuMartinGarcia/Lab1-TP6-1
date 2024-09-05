@@ -23,7 +23,7 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
         
         initComponents();
         armarCabecera();
-        agregarMuchosProductos();
+        
         estadoCampos(1);
         this.setTitle("Gestion De Productos");
     }
@@ -465,35 +465,7 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
         }    
 
     }//GEN-LAST:event_btBuscarActionPerformed
-    private void agregarMuchosProductos(){
-        
-        Producto prod1 = new Producto(120, "PAPA BLANCA","COMESTIBLES", 800, 50);
-        Producto prod2 = new Producto(121, "ZAPALLO ANCO","COMESTIBLES", 980, 25);    
-        Producto prod3 = new Producto(122, "ZANAHORIA","COMESTIBLES", 980, 25);    
-        Producto prod4 = new Producto(123, "CARNE MOLIDA","COMESTIBLES", 4500, 60);    
-        Producto prod5 = new Producto(124, "FALDA","COMESTIBLES", 5300, 83);    
-        Producto prod6 = new Producto(125, "DESODORANTE DOVE","PERFUMERIA", 980, 141);    
-        Producto prod7 = new Producto(126, "SHAMPOO PANTENE","PERFUMERIA", 980, 62);    
-        Producto prod8 = new Producto(127, "TINTURA KEY COLOR","PERFUMERIA", 980, 20);    
-        Producto prod9 = new Producto(128, "DETERGENTE MAGISTRAL X 500CC","LIMPIEZA", 980, 637);    
-        Producto prod10 = new Producto(129, "LAVANDINA AYUDIN X 1LT","LIMPIEZA", 1320, 300);    
-        Producto prod11 = new Producto(130, "JABON LIQUIDO X 300CC","LIMPIEZA", 2540, 55);    
-        Producto prod12 = new Producto(131, "JABON DE TOCADOR LIMOL","LIMPIEZA", 1700, 120);    
-        listadoProductos.add(prod1);
-        listadoProductos.add(prod2);
-        listadoProductos.add(prod3);
-        listadoProductos.add(prod4);
-        listadoProductos.add(prod5);
-        listadoProductos.add(prod6);
-        listadoProductos.add(prod7);
-        listadoProductos.add(prod8);
-        listadoProductos.add(prod9);
-        listadoProductos.add(prod10);
-        listadoProductos.add(prod11);
-        listadoProductos.add(prod12);
     
-    
-    }    
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
         
         if (jProductos.isEnabled()){

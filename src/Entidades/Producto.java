@@ -3,7 +3,7 @@ package Entidades;
 
 import java.util.Objects;
 
-public class Producto {
+public class Producto implements Comparable<Producto>{
 
     private int codigo;
     private String descripcion;
@@ -100,8 +100,19 @@ public class Producto {
         return Objects.equals(this.rubro, other.rubro);
     }
 
-    
-    
-    
+    @Override
+    public int compareTo(Producto o) {
+       
+        if(codigo== o.codigo){
+            
+            return 0;
+        }else if(codigo > o.codigo){
+            return 1;
+        }else{
+            return -1;
+        }
+        
+    }
+
     
 }

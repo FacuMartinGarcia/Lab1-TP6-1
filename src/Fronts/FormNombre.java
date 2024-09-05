@@ -4,6 +4,7 @@
  */
 package Fronts;
 
+import Entidades.Producto;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -40,9 +41,11 @@ private DefaultTableModel modeloA= new DefaultTableModel();
         jLabel2 = new javax.swing.JLabel();
         tbDescripcion = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jtProductos = new javax.swing.JScrollPane();
         jProductos = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
+
+        setClosable(true);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setText("Listado por Nombre");
@@ -94,7 +97,7 @@ private DefaultTableModel modeloA= new DefaultTableModel();
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jProductos);
+        jtProductos.setViewportView(jProductos);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -102,18 +105,18 @@ private DefaultTableModel modeloA= new DefaultTableModel();
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/vecteezy_magnifying-glass-png-graphic-clipart-design_19907414.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Lupa.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -135,15 +138,11 @@ private DefaultTableModel modeloA= new DefaultTableModel();
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addGap(30, 30, 30)))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -168,8 +167,20 @@ private DefaultTableModel modeloA= new DefaultTableModel();
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbDescripcionKeyReleased
-        
-        // TEXTO DE DESCRIPCION
+       borrarFilas();  
+    String textoIngresado = tbDescripcion.getText().toLowerCase();
+
+    for (Producto producto : MenuPrincipal.listadoProductos) {
+        if (producto.getDescripcion().toLowerCase().startsWith(textoIngresado)) {
+            modeloA.addRow(new Object[]{
+                producto.getCodigo(),
+                producto.getDescripcion(),
+                producto.getRubro(),
+                producto.getPrecio(),
+                producto.getStock()
+            });
+        }
+    }
         
         
         
@@ -184,7 +195,7 @@ private DefaultTableModel modeloA= new DefaultTableModel();
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTable jProductos;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jtProductos;
     private javax.swing.JTextField tbDescripcion;
     // End of variables declaration//GEN-END:variables
 
@@ -212,7 +223,14 @@ private void armarCabecera(){
 
     }
 
-
+private void borrarFilas(){
+    
+    int f= jProductos.getRowCount()-1;
+    
+    for( int i=f; i>=0; i--){
+        modeloA.removeRow(i);
+    }
+}
 
 
 
