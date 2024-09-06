@@ -18,6 +18,7 @@ import javax.swing.table.TableColumnModel;
 public class FormGestionProductos extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modeloA= new DefaultTableModel();
+    private String origen;
     
     public FormGestionProductos() {
         
@@ -26,6 +27,7 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
         
         estadoCampos(1);
         this.setTitle("Gestion De Productos");
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -324,7 +326,7 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
+                        .addGap(18, 18, 18)
                         .addComponent(panPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -338,6 +340,27 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
+
+    if (origen=="actualizar"){
+        
+        //Validar!!!!!!
+        
+        
+        Double precio = Double.valueOf(tbPrecio.getText());
+        String rubro= cbRubro.getSelectedItem().toString();
+        int stock= jsStock.getComponentCount();
+        int codigo= Integer.parseInt(tbCodigo.getText());
+        actualizarProducto(codigo, rubro, precio, stock);
+        estadoCampos(1);
+        extraerDatosDeTabla();
+        jsStock.setValue(0);
+        //jProductos.setEnabled(true);
+        btBuscarActionPerformed(new java.awt.event.ActionEvent(this, ActionEvent.ACTION_PERFORMED, "command"));
+                
+       return;
+    
+    }    
+        
         try {
            
             // Controlamos que todos los campos estén completos
@@ -375,11 +398,14 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
 
                 if (listadoProductos.add(prod)==true){
                     actualizarListadoProductos();
+                    jsStock.setValue(0);
+                    estadoCampos(1);
                 }else{
                     JOptionPane.showMessageDialog(null, "El producto ya se encuentra definido en la lista",
                         "Producto Duplicado", JOptionPane.ERROR_MESSAGE);
                 }
-
+                
+                
             }
             
         } catch (NumberFormatException e) {
@@ -399,23 +425,38 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
                 btGuardar.setEnabled(false);
                 btActualizar.setEnabled(false);
                 btNuevo.setEnabled(true);
+                btCancelar.setEnabled(false);    
                 btBuscar.setEnabled(true);
                 cbBuscarRubro.setEnabled(true);
                 cbBuscarRubro.requestFocusInWindow();
                 jProductos.setEnabled(false);
                 break;
 
-            case 2: //Editando
+            case 2: //Nuevo
                 
                 vaciarCampos(panPrincipal);
                 btGuardar.setEnabled(true);
                 btEliminar.setEnabled(false);
                 btActualizar.setEnabled(false);
                 btNuevo.setEnabled(false);
+                btCancelar.setEnabled(true);   
                 btBuscar.setEnabled(false);
                 cbBuscarRubro.setEnabled(false);
                 jProductos.setEnabled(false);
                 tbCodigo.requestFocusInWindow();
+                break;
+                
+            case 3: //Editando (Actualizando)
+                
+                btGuardar.setEnabled(true);
+                btEliminar.setEnabled(false);
+                btActualizar.setEnabled(false);
+                btNuevo.setEnabled(false);
+                btBuscar.setEnabled(false);
+                btCancelar.setEnabled(true);   
+                cbBuscarRubro.setEnabled(false);
+                jProductos.setEnabled(false);
+                
                 break;
  
         }
@@ -423,7 +464,7 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
         
     }
 
-    
+
     private void eliminarProducto(int codigo){
 
         Iterator<Producto> iterator = listadoProductos.iterator();
@@ -435,7 +476,25 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
         }
 
     }  
+    
+    private void actualizarProducto(int codigo, String rubro, double Precio, int stock){
+
+        Iterator<Producto> iterator = listadoProductos.iterator();
+        while (iterator.hasNext()) {
+            Producto producto = iterator.next();
+            if (producto.getCodigo() == codigo) {
+                producto.setRubro(rubro);
+                producto.setPrecio(Precio); 
+                producto.setStock(stock);
+            }
+        }
+
+    }  
+    
+    
     private void btNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoActionPerformed
+        
+        origen ="nuevo";
         
         estadoCampos(2);        
         cbBuscarRubro.setSelectedIndex(-1);
@@ -444,6 +503,32 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btNuevoActionPerformed
 
     private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
+
+       ////* ACTUALIZAR  
+       
+        origen="actualizar";
+        
+        if (jProductos.isEnabled()){
+
+            int filaSeleccionada = jProductos.getSelectedRow();
+            if (filaSeleccionada != -1) { // Controlamos que haya una fila seleccionada
+
+                int codigo = (int) jProductos.getValueAt(filaSeleccionada, 0);
+                
+                estadoCampos(3);
+                
+                //Al Estar Actualizando, no podemos cambiar ni NI EL CODIGO, NI la DESCRIPCION
+               cbRubro.setEnabled(true);
+               cbRubro.setBackground(Color.yellow);
+               tbPrecio.setEnabled(true);
+               tbPrecio.setBackground(Color.yellow);
+               jsStock.setEnabled(true);
+               jsStock.setBackground(Color.yellow);              
+               
+ 
+           }
+        }
+   //    actualizarProducto()
         // TODO add your handling code here:
     }//GEN-LAST:event_btActualizarActionPerformed
 
@@ -467,6 +552,8 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btBuscarActionPerformed
     
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
+        
+        
         
         if (jProductos.isEnabled()){
 
@@ -498,8 +585,8 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btEliminarActionPerformed
 
-    private void jProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jProductosMouseClicked
-
+    private void extraerDatosDeTabla(){
+    
         if (jProductos.isEnabled()){
             int filaSeleccionada = jProductos.getSelectedRow();
 
@@ -510,8 +597,6 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
                 btActualizar.setEnabled(true);
 
                 //Cargamos los valores en los Campos
-
-                //int id = (int) jProductos.getValueAt(filaSeleccionada, 0);
 
                 int codigo = (int) jProductos.getValueAt(filaSeleccionada, 0);
                 String code = String.valueOf(codigo);
@@ -529,6 +614,11 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
 
             }
         }
+    
+    }
+    
+    private void jProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jProductosMouseClicked
+        extraerDatosDeTabla();
     }//GEN-LAST:event_jProductosMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -536,7 +626,21 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-        estadoCampos(1);
+
+        if (origen=="nuevo"){
+        
+            estadoCampos(1);
+            
+                        
+        }else if (origen=="actualizar"){
+            
+            estadoCampos(1);
+            extraerDatosDeTabla();
+            jsStock.setValue(0);
+            jProductos.setEnabled(true);
+            
+        }
+        
         
         
     }//GEN-LAST:event_btCancelarActionPerformed
@@ -575,6 +679,8 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
 
 
     }
+    
+    
     public void vaciarCampos(JPanel jpanel) {
        JComboBox combo = null;
        JSpinner spinner = null;
@@ -612,6 +718,8 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
        }
         
     }
+    
+    
     public void bloquearCampos(JPanel jpanel) {
        
        JComboBox combo = null;
