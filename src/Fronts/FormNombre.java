@@ -1,25 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package Fronts;
 
 import Entidades.Producto;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-/**
- *
- * @author Rafa
- */
-
-
 public class FormNombre extends javax.swing.JInternalFrame {
     
-private DefaultTableModel modeloA= new DefaultTableModel();
-    /**
-     * Creates new form FormNombre
-     */
+private DefaultTableModel modeloA= new DefaultTableModel(){
+    
+    @Override
+    public boolean isCellEditable(int f, int c){
+        
+        return false;
+    }
+};
     public FormNombre() {
         initComponents();
         armarCabecera();
