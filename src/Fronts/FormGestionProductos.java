@@ -284,7 +284,6 @@ private DefaultTableModel modeloA= new DefaultTableModel(){
         cbBuscarRubro.setBackground(new java.awt.Color(42, 100, 150));
         cbBuscarRubro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cbBuscarRubro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COMESTIBLES", "LIMPIEZA", "PERFUMERIA" }));
-        cbBuscarRubro.setSelectedIndex(-1);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -603,6 +602,7 @@ private DefaultTableModel modeloA= new DefaultTableModel(){
         if (cbBuscarRubro.getSelectedIndex()== -1){
             JOptionPane.showMessageDialog(null, "Seleccione un rubro a buscar","Atención", JOptionPane.ERROR_MESSAGE);
         }else{    
+            
             modeloA.setRowCount(0);
             jProductos.setEnabled(true);
             String rubro= cbBuscarRubro.getSelectedItem().toString();
@@ -612,8 +612,9 @@ private DefaultTableModel modeloA= new DefaultTableModel(){
                     modeloA.addRow(linea);
                 }
             }
-        }    
-
+        }
+        
+        
     }//GEN-LAST:event_btBuscarActionPerformed
     
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
