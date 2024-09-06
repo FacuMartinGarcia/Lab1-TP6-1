@@ -167,7 +167,7 @@ private DefaultTableModel modeloA= new DefaultTableModel();
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbDescripcionKeyReleased
-       borrarFilas();  
+    borrarFilas();  
     String textoIngresado = tbDescripcion.getText().toLowerCase();
 
     for (Producto producto : MenuPrincipal.listadoProductos) {

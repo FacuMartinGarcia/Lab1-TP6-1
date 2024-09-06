@@ -4,6 +4,7 @@
  */
 package Fronts;
 
+import Entidades.Producto;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -19,7 +20,6 @@ private DefaultTableModel modeloA= new DefaultTableModel();
     public FormPrecio() {
         initComponents();
         this.setTitle("Listado por Precio");
-
         armarCabecera();
     }
 
@@ -36,9 +36,9 @@ private DefaultTableModel modeloA= new DefaultTableModel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tbValor1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        tbValor2 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -54,8 +54,40 @@ private DefaultTableModel modeloA= new DefaultTableModel();
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Entre $");
 
+        tbValor1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbValor1ActionPerformed(evt);
+            }
+        });
+        tbValor1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                tbValor1PropertyChange(evt);
+            }
+        });
+        tbValor1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tbValor1KeyReleased(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Y");
+
+        tbValor2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbValor2ActionPerformed(evt);
+            }
+        });
+        tbValor2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                tbValor2PropertyChange(evt);
+            }
+        });
+        tbValor2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tbValor2KeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -65,12 +97,12 @@ private DefaultTableModel modeloA= new DefaultTableModel();
                 .addGap(92, 92, 92)
                 .addComponent(jLabel1)
                 .addGap(5, 5, 5)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tbValor1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tbValor2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,8 +111,8 @@ private DefaultTableModel modeloA= new DefaultTableModel();
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tbValor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tbValor2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
@@ -164,6 +196,29 @@ private DefaultTableModel modeloA= new DefaultTableModel();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tbValor1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tbValor1PropertyChange
+        
+    }//GEN-LAST:event_tbValor1PropertyChange
+
+    private void tbValor2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tbValor2PropertyChange
+        
+    }//GEN-LAST:event_tbValor2PropertyChange
+
+    private void tbValor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbValor1ActionPerformed
+        
+    }//GEN-LAST:event_tbValor1ActionPerformed
+
+    private void tbValor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbValor2ActionPerformed
+        
+    }//GEN-LAST:event_tbValor2ActionPerformed
+
+    private void tbValor1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbValor1KeyReleased
+        actualizarTabla();
+    }//GEN-LAST:event_tbValor1KeyReleased
+
+    private void tbValor2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbValor2KeyReleased
+        actualizarTabla();
+    }//GEN-LAST:event_tbValor2KeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -175,8 +230,8 @@ private DefaultTableModel modeloA= new DefaultTableModel();
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTable jProductos;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField tbValor1;
+    private javax.swing.JTextField tbValor2;
     // End of variables declaration//GEN-END:variables
 
 private void armarCabecera(){
@@ -202,5 +257,31 @@ private void armarCabecera(){
 
 
     }
+
+private void actualizarTabla(){
+    
+    
+    
+    if(tbValor1.getText().isEmpty() || tbValor2.getText().isEmpty()){
+    
+    }else{
+        modeloA.setRowCount(0);
+        double valor1 = Double.parseDouble(tbValor1.getText());
+        double valor2 = Double.parseDouble(tbValor2.getText());
+         for (Producto producto : MenuPrincipal.listadoProductos) {
+        if (producto.getPrecio()>= valor1 && producto.getPrecio() <= valor2) {
+            modeloA.addRow(new Object[]{
+                producto.getCodigo(),
+                producto.getDescripcion(),
+                producto.getRubro(),
+                producto.getPrecio(),
+                producto.getStock()
+            });
+        }
+    }
+    System.out.println("ACTUALIZAR TABLA");
+    }
+}
+
 
 }
