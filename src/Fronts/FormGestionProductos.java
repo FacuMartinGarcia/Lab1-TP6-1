@@ -17,13 +17,18 @@ import javax.swing.table.TableColumnModel;
 
 public class FormGestionProductos extends javax.swing.JInternalFrame {
 
-    private DefaultTableModel modeloA= new DefaultTableModel();
+    private DefaultTableModel modeloA = new DefaultTableModel(); 
+        
+    
     private String origen;
+    
     
     public FormGestionProductos() {
         
+
         initComponents();
         armarCabecera();
+
         
         estadoCampos(1);
         this.setTitle("Gestion De Productos");
@@ -76,7 +81,6 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
         );
 
         panPrincipal.setBackground(new java.awt.Color(36, 82, 105));
-        panPrincipal.setForeground(new java.awt.Color(0, 0, 0));
         panPrincipal.setAutoscrolls(true);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -299,13 +303,26 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jProductos.setColumnSelectionAllowed(true);
+        jProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.SE_RESIZE_CURSOR));
+        jProductos.setDoubleBuffered(true);
+        jProductos.setShowGrid(false);
         jProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jProductosMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jProductos);
+        jProductos.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -334,8 +351,8 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
                     .addComponent(btBuscar)
                     .addComponent(cbBuscarRubro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 10, Short.MAX_VALUE))
         );
 
@@ -434,25 +451,7 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
 
-    if (origen=="actualizar"){
-        
-        //Validar!!!!!!
-        
-        
-        Double precio = Double.valueOf(tbPrecio.getText());
-        String rubro= cbRubro.getSelectedItem().toString();
-        int stock= jsStock.getComponentCount();
-        int codigo= Integer.parseInt(tbCodigo.getText());
-        actualizarProducto(codigo, rubro, precio, stock);
-        estadoCampos(1);
-        extraerDatosDeTabla();
-        jsStock.setValue(0);
-        //jProductos.setEnabled(true);
-        btBuscarActionPerformed(new java.awt.event.ActionEvent(this, ActionEvent.ACTION_PERFORMED, "command"));
-                
-       return;
-    
-    }    
+   
         
         try {
            
@@ -486,7 +485,19 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
                 String rubro= cbRubro.getSelectedItem().toString();
                 int stock= jsStock.getComponentCount();
                 int codigo= Integer.parseInt(tbCodigo.getText());
-
+                
+                if (origen=="actualizar"){
+                    actualizarProducto(codigo, rubro, precio, stock);
+                    estadoCampos(1);
+                    extraerDatosDeTabla();
+                    //jsStock.setValue(0);
+                    //jProductos.setEnabled(true);
+                    btBuscarActionPerformed(new java.awt.event.ActionEvent(this, ActionEvent.ACTION_PERFORMED, "command"));
+                    JOptionPane.showMessageDialog(null, "Se ha actualizado la información del Producto",
+                    "Producto Actualizado", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }    
+                
                 Producto prod = new Producto(codigo, descripcion.toUpperCase(), rubro, precio, stock);
 
                 if (listadoProductos.add(prod)==true){
@@ -588,7 +599,6 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
     private void btNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoActionPerformed
         
         origen ="nuevo";
-        
         estadoCampos(2);        
         cbBuscarRubro.setSelectedIndex(-1);
         modeloA.setRowCount(0);
@@ -597,8 +607,6 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
 
     private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
 
-       ////* ACTUALIZAR  
-       
         origen="actualizar";
         
         if (jProductos.isEnabled()){
@@ -607,7 +615,6 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
             if (filaSeleccionada != -1) { // Controlamos que haya una fila seleccionada
 
                 int codigo = (int) jProductos.getValueAt(filaSeleccionada, 0);
-                
                 estadoCampos(3);
                 
                 //Al Estar Actualizando, no podemos cambiar ni NI EL CODIGO, NI la DESCRIPCION
@@ -617,12 +624,10 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
                tbPrecio.setBackground(Color.yellow);
                jsStock.setEnabled(true);
                jsStock.setBackground(Color.yellow);              
-               
- 
+   
            }
         }
-   //    actualizarProducto()
-        // TODO add your handling code here:
+ 
     }//GEN-LAST:event_btActualizarActionPerformed
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
@@ -630,7 +635,6 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
         if (cbBuscarRubro.getSelectedIndex()== -1){
             JOptionPane.showMessageDialog(null, "Seleccione un rubro a buscar","Atención", JOptionPane.ERROR_MESSAGE);
         }else{    
-            
             modeloA.setRowCount(0);
             jProductos.setEnabled(true);
             String rubro= cbBuscarRubro.getSelectedItem().toString();
@@ -645,9 +649,7 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btBuscarActionPerformed
     
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
-        
-        
-        
+  
         if (jProductos.isEnabled()){
 
             int filaSeleccionada = jProductos.getSelectedRow();
@@ -668,8 +670,7 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
                 estadoCampos(1);
                 jsStock.setValue(0);
                 btBuscarActionPerformed(new java.awt.event.ActionEvent(this, ActionEvent.ACTION_PERFORMED, "command"));
-                
-                
+
             }
         }
 
@@ -721,20 +722,15 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
 
         if (origen=="nuevo"){
-        
             estadoCampos(1);
-            
-                        
         }else if (origen=="actualizar"){
-            
             estadoCampos(1);
             extraerDatosDeTabla();
             jsStock.setValue(0);
             jProductos.setEnabled(true);
-            
         }
         
-        
+ 
         
     }//GEN-LAST:event_btCancelarActionPerformed
     
@@ -746,22 +742,21 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
         modeloA.addColumn("Precio");
         modeloA.addColumn("Stock");
 
-        jProductos.setModel(modeloA);
-
         // Obtener el modelo de columnas de la tabla
         TableColumnModel columnModel = jProductos.getColumnModel();
 
-        // Ancho de las columnas
+        //Ancho de las columnas
         columnModel.getColumn(0).setPreferredWidth(50);   // "Codigo"
         columnModel.getColumn(1).setPreferredWidth(180);  // "Descripcion"
         columnModel.getColumn(2).setPreferredWidth(100);  // "Categoria"
         columnModel.getColumn(3).setPreferredWidth(50);   // "Precio"
         columnModel.getColumn(4).setPreferredWidth(30);   // "Stock"
 
+        jProductos.setModel(modeloA);
 
 
     }
-
+   
 
     public void actualizarListadoProductos(){
            modeloA.setRowCount(0);
@@ -769,8 +764,6 @@ public class FormGestionProductos extends javax.swing.JInternalFrame {
                 Object[] linea = {p.getCodigo(), p.getDescripcion(), p.getRubro(), p.getPrecio(), p.getStock()};
                 modeloA.addRow(linea);
            }
-
-
     }
     
     
