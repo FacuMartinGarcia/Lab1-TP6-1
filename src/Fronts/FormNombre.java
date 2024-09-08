@@ -46,7 +46,7 @@ private DefaultTableModel modeloA= new DefaultTableModel(){
         jPanel3.setBackground(new java.awt.Color(31, 76, 115));
 
         jProductos.setBackground(new java.awt.Color(217, 237, 247));
-        jProductos.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jProductos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jProductos.setForeground(new java.awt.Color(51, 51, 51));
         jProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -74,7 +74,7 @@ private DefaultTableModel modeloA= new DefaultTableModel(){
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 30)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(245, 245, 245));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Listado por Descripción de Producto");
@@ -121,7 +121,7 @@ private DefaultTableModel modeloA= new DefaultTableModel(){
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -137,7 +137,7 @@ private DefaultTableModel modeloA= new DefaultTableModel(){
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jtProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

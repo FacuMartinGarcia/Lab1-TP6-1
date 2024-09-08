@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -33,11 +34,9 @@ private DefaultTableModel modeloA= new DefaultTableModel(){
 
         initComponents();
         armarCabecera();
-
-        
         estadoCampos(1);
         this.setTitle("Gestion De Productos");
-        
+       
     }
 
     @SuppressWarnings("unchecked")
@@ -481,8 +480,6 @@ private DefaultTableModel modeloA= new DefaultTableModel(){
                     actualizarProducto(codigo, rubro, precio, stock);
                     estadoCampos(1);
                     extraerDatosDeTabla();
-                    //jsStock.setValue(0);
-                    //jProductos.setEnabled(true);
                     btBuscarActionPerformed(new java.awt.event.ActionEvent(this, ActionEvent.ACTION_PERFORMED, "command"));
                     JOptionPane.showMessageDialog(null, "Se ha actualizado la información del Producto",
                     "Producto Actualizado", JOptionPane.INFORMATION_MESSAGE);
@@ -495,6 +492,9 @@ private DefaultTableModel modeloA= new DefaultTableModel(){
                     actualizarListadoProductos();
                     jsStock.setValue(0);
                     estadoCampos(1);
+                    JOptionPane.showMessageDialog(null, "Se agregó el Producto Exitosamente",
+                   "Nuevo producto incorporado", JOptionPane.INFORMATION_MESSAGE);
+                    return;
                 }else{
                     JOptionPane.showMessageDialog(null, "El producto ya se encuentra definido en la lista",
                         "Producto Duplicado", JOptionPane.ERROR_MESSAGE);
@@ -761,7 +761,7 @@ private DefaultTableModel modeloA= new DefaultTableModel(){
                JTextField caja = (JTextField) c;
                caja.setEnabled(true);
                caja.setText("");
-               caja.setBackground(Color.getHSBColor(187,187,187));  //187,187,187 PALETTE HSB light.yellow
+               caja.setBackground(Color.getHSBColor(187,187,187)); 
            } else if (c instanceof JComboBox) {
                combo = (JComboBox) c;
                combo.setEnabled(true);

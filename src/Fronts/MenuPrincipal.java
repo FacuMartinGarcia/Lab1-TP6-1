@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.TreeSet;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,6 +22,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("DeTodo S.A.");
         agregarMuchosProductos();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+       // Iniciar el JFrame maximizado
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
     }
 
