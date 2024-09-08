@@ -43,10 +43,11 @@ private DefaultTableModel modeloA= new DefaultTableModel(){
 
         setClosable(true);
 
-        Jpa.setBackground(new java.awt.Color(245, 245, 245));
+        Jpa.setBackground(new java.awt.Color(31, 76, 115));
 
-        jProductos.setBackground(new java.awt.Color(249, 242, 244));
+        jProductos.setBackground(new java.awt.Color(217, 237, 247));
         jProductos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jProductos.setForeground(new java.awt.Color(51, 51, 51));
         jProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -61,10 +62,10 @@ private DefaultTableModel modeloA= new DefaultTableModel(){
         jScrollPane1.setViewportView(jProductos);
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(169, 68, 66));
+        jLabel2.setForeground(new java.awt.Color(245, 245, 245));
         jLabel2.setText("Rubro:");
 
-        cbBuscarRubro.setBackground(new java.awt.Color(249, 242, 244));
+        cbBuscarRubro.setBackground(new java.awt.Color(245, 245, 245));
         cbBuscarRubro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cbBuscarRubro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COMESTIBLES", "LIMPIEZA", "PERFUMERIA" }));
         cbBuscarRubro.addActionListener(new java.awt.event.ActionListener() {
@@ -75,13 +76,13 @@ private DefaultTableModel modeloA= new DefaultTableModel(){
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(132, 53, 52));
+        jLabel1.setForeground(new java.awt.Color(245, 245, 245));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Listado por Rubro");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Lupa.png"))); // NOI18N
 
-        jPanel2.setBackground(new java.awt.Color(192, 192, 192));
+        jPanel2.setBackground(new java.awt.Color(217, 237, 247));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

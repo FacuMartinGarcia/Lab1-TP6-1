@@ -41,9 +41,10 @@ private DefaultTableModel modeloA= new DefaultTableModel(){
 
         setClosable(true);
 
-        jPanel3.setBackground(new java.awt.Color(245, 245, 245));
+        jPanel3.setBackground(new java.awt.Color(31, 76, 115));
 
-        jProductos.setBackground(new java.awt.Color(249, 242, 244));
+        jProductos.setBackground(new java.awt.Color(217, 237, 247));
+        jProductos.setForeground(new java.awt.Color(51, 51, 51));
         jProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -58,10 +59,11 @@ private DefaultTableModel modeloA= new DefaultTableModel(){
         jScrollPane1.setViewportView(jProductos);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(169, 68, 66));
+        jLabel1.setForeground(new java.awt.Color(245, 245, 245));
         jLabel1.setText("Entre $");
 
-        tbValor1.setBackground(new java.awt.Color(249, 242, 244));
+        tbValor1.setBackground(new java.awt.Color(245, 245, 245));
+        tbValor1.setForeground(new java.awt.Color(51, 51, 51));
         tbValor1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbValor1ActionPerformed(evt);
@@ -79,10 +81,11 @@ private DefaultTableModel modeloA= new DefaultTableModel(){
         });
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(169, 68, 66));
+        jLabel2.setForeground(new java.awt.Color(245, 245, 245));
         jLabel2.setText("Y");
 
-        tbValor2.setBackground(new java.awt.Color(249, 242, 244));
+        tbValor2.setBackground(new java.awt.Color(245, 245, 245));
+        tbValor2.setForeground(new java.awt.Color(51, 51, 51));
         tbValor2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbValor2ActionPerformed(evt);
@@ -102,10 +105,10 @@ private DefaultTableModel modeloA= new DefaultTableModel(){
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Lupa.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(132, 53, 52));
+        jLabel3.setForeground(new java.awt.Color(245, 245, 245));
         jLabel3.setText("Listado por Precios");
 
-        jPanel4.setBackground(new java.awt.Color(192, 192, 192));
+        jPanel4.setBackground(new java.awt.Color(217, 237, 247));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
