@@ -223,6 +223,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
 private void agregarMuchosProductos(){
         
+    // Agregamos muchos productos para hacer pruebas
         Producto prod1 = new Producto(120, "PAPA BLANCA","COMESTIBLES", 800, 50);
         Producto prod2 = new Producto(121, "ZAPALLO ANCO","COMESTIBLES", 980, 25);    
         Producto prod3 = new Producto(122, "ZANAHORIA","COMESTIBLES", 980, 25);    
